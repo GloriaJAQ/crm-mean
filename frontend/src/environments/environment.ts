@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://crm-mean-backend.vercel.app/api'  //cambiar después del deploy
+  apiUrl: 'https://crm-backend-9vuwbo5dt-gloriajaqs-projects.vercel.app/'
 };

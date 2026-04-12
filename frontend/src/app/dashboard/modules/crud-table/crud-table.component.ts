@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf, SlicePipe } from '@angular/common';
-import { ApiService } from '../../../services/api';
-import { AuthService } from '../../../services/auth';
+import { ApiService } from '../../../services/api.service';
+import { AuthService } from '../../../services/auth.service';
 
 export interface Campo { key: string; label: string; type?: string; options?: string[]; }
 
@@ -50,7 +50,9 @@ export class CrudTableComponent implements OnInit {
 
   onSearch() {
     const q = this.search.toLowerCase();
-    this.filtered = q ? this.items.filter(i => JSON.stringify(i).toLowerCase().includes(q)) : [...this.items];
+    this.filtered = q
+      ? this.items.filter(i => JSON.stringify(i).toLowerCase().includes(q))
+      : [...this.items];
   }
 
   openCreate() {
@@ -79,7 +81,7 @@ export class CrudTableComponent implements OnInit {
     if (!confirm('¿Eliminar este registro?')) return;
     this.api.delete(this.coleccion, id).subscribe({
       next: () => { this.load(); this.flash('Eliminado ✅'); },
-      error: (e) => { this.error = e.error?.msg || 'Error al eliminar'; }
+      error: (e) => { this.error = e.error?.msg || 'Error'; }
     });
   }
 

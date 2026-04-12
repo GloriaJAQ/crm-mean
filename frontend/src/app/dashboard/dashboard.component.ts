@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgFor, NgIf, NgClass } from '@angular/common';
-import { AuthService } from '../services/auth';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',

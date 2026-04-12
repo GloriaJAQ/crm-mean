@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CrudTableComponent, Campo } from '../crud-table/crud-table';
+import { CrudTableComponent, Campo } from '../crud-table/crud-table.component';
 
 @Component({
   selector: 'app-clientes',
