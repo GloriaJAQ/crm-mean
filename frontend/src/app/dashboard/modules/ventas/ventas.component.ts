@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CrudTableComponent, Campo } from '../crud-table/crud-table';
+import { CrudTableComponent, Campo } from '../crud-table/crud-table.component';
 
 @Component({
   selector: 'app-ventas',
@@ -11,7 +11,7 @@ export class VentasComponent {
   campos: Campo[] = [
     { key: 'cliente', label: 'Cliente' },
     { key: 'usuario', label: 'Usuario' },
-    { key: 'total',   label: 'Total', type: 'number' },
-    { key: 'fecha',   label: 'Fecha', type: 'date' }
+    { key: 'total',   label: 'Total',  type: 'number' },
+    { key: 'fecha',   label: 'Fecha',  type: 'date' }
   ];
 }
