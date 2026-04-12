@@ -1,1 +1,39 @@
-<p>register works!</p>
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-brand">
+      <div class="brand-icon">CRM</div>
+      <h1>Sistema CRM</h1>
+      <p>Crea tu cuenta de acceso</p>
+    </div>
+    <div class="auth-card">
+      <h2>Registro de usuario</h2>
+      <div class="alert alert-error"   *ngIf="error">{{ error }}</div>
+      <div class="alert alert-success" *ngIf="success">{{ success }}</div>
+      <form (ngSubmit)="onRegister()">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" [(ngModel)]="form.nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" [(ngModel)]="form.email" name="email" placeholder="correo@empresa.com" required>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" [(ngModel)]="form.password" name="password" placeholder="Mínimo 6 caracteres" required>
+        </div>
+        <div class="form-group">
+          <label>Rol</label>
+          <select [(ngModel)]="form.rol" name="rol">
+            <option value="user">Usuario</option>
+            <option value="guest">Invitado (solo lectura)</option>
+          </select>
+        </div>
+        <button class="btn btn-success full" type="submit" [disabled]="loading">
+          {{ loading ? 'Registrando...' : 'Crear cuenta' }}
+        </button>
+      </form>
+      <p class="auth-link">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+    </div>
+  </div>
+</div>

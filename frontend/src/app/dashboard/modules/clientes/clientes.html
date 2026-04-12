@@ -1,1 +1,10 @@
-<p>clientes works!</p>
+<app-crud-table
+  coleccion="clientes"
+  titulo="Clientes"
+  [campos]="[
+    {key:'nombre',   label:'Nombre'},
+    {key:'empresa',  label:'Empresa'},
+    {key:'telefono', label:'Teléfono'},
+    {key:'correo',   label:'Correo', type:'email'}
+  ]">
+</app-crud-table>

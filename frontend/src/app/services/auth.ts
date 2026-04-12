@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private api = environment.apiUrl;
-
-  constructor(private http: HttpClient, private router: Router) {}
+  private http   = inject(HttpClient);
+  private router = inject(Router);
+  private api    = environment.apiUrl;
 
   login(email: string, password: string) {
     return this.http.post<any>(`${this.api}/auth/login`, { email, password });
@@ -25,11 +25,11 @@ export class AuthService {
   }
 
   getToken()  { return localStorage.getItem('token'); }
-  getRol()    { return localStorage.getItem('rol'); }
-  getNombre() { return localStorage.getItem('nombre'); }
+  getRol()    { return localStorage.getItem('rol') ?? ''; }
+  getNombre() { return localStorage.getItem('nombre') ?? ''; }
   isLogged()  { return !!this.getToken(); }
   isAdmin()   { return this.getRol() === 'admin'; }
-  isUser()    { return ['admin','user'].includes(this.getRol() || ''); }
+  isUser()    { return ['admin', 'user'].includes(this.getRol()); }
 
   logout() {
     localStorage.clear();

@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-brand">
+      <div class="brand-icon">CRM</div>
+      <h1>Sistema CRM</h1>
+      <p>Gestión empresarial inteligente</p>
+    </div>
+    <div class="auth-card">
+      <h2>Iniciar sesión</h2>
+      <div class="alert alert-error" *ngIf="error">{{ error }}</div>
+      <form (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" [(ngModel)]="email" name="email" placeholder="admin@crm.com" required>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="pass-wrap">
+            <input [type]="showPass ? 'text' : 'password'" [(ngModel)]="password" name="password" placeholder="••••••••" required>
+            <button type="button" class="pass-toggle" (click)="showPass = !showPass">{{ showPass ? '🙈' : '👁️' }}</button>
+          </div>
+        </div>
+        <button class="btn btn-primary full" type="submit" [disabled]="loading">
+          {{ loading ? 'Iniciando...' : 'Ingresar' }}
+        </button>
+      </form>
+      <p class="auth-link">¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a></p>
+      <div class="demo-creds">Demo: admin@crm.com / Admin123*</div>
+    </div>
+  </div>
+</div>
