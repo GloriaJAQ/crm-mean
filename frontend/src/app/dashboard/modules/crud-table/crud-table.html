@@ -1,0 +1,68 @@
+<div class="crud-wrap">
+  <div class="crud-header">
+    <h2>{{ titulo }}</h2>
+    <div class="crud-actions">
+      <div class="search-bar">
+        <input type="text" [(ngModel)]="search" (input)="onSearch()" placeholder="Buscar...">
+      </div>
+      <button class="btn btn-primary btn-sm" *ngIf="canWrite" (click)="openCreate()">+ Nuevo</button>
+    </div>
+  </div>
+
+  <div class="alert alert-success" *ngIf="success">{{ success }}</div>
+  <div class="alert alert-error"   *ngIf="error && !showModal">{{ error }}</div>
+
+  <div class="table-container" *ngIf="!loading; else spinner">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let c of campos">{{ c.label }}</th>
+          <th *ngIf="canWrite">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filtered">
+          <td *ngFor="let c of campos">{{ val(item, c.key) }}</td>
+          <td *ngIf="canWrite">
+            <button class="btn btn-warning btn-sm" (click)="openEdit(item)">✏️</button>
+            <button class="btn btn-danger btn-sm" *ngIf="canDelete" (click)="delete(item._id)" style="margin-left:6px">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="filtered.length === 0">
+          <td [attr.colspan]="campos.length + 1" class="empty-row">Sin registros aún</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #spinner>
+    <div class="spinner-wrap">
+      <div class="spinner"></div>
+      <span>Cargando...</span>
+    </div>
+  </ng-template>
+
+  <!-- Modal -->
+  <div class="modal-overlay" *ngIf="showModal" (click)="closeModal($event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>{{ isEditing ? 'Editar' : 'Nuevo' }} {{ titulo | slice:0:-1 }}</h3>
+        <button class="modal-close" (click)="showModal=false">✕</button>
+      </div>
+      <div class="alert alert-error" *ngIf="error">{{ error }}</div>
+      <form (ngSubmit)="save()">
+        <div class="form-group" *ngFor="let c of campos">
+          <label>{{ c.label }}</label>
+          <select *ngIf="c.options" [(ngModel)]="form[c.key]" [name]="c.key">
+            <option *ngFor="let o of c.options" [value]="o">{{ o }}</option>
+          </select>
+          <input *ngIf="!c.options" [type]="c.type || 'text'" [(ngModel)]="form[c.key]" [name]="c.key">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary"   type="submit">Guardar</button>
+          <button class="btn btn-secondary" type="button" (click)="showModal=false">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

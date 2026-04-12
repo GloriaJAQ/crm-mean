@@ -1,0 +1,44 @@
+.dashboard-layout { display: flex; min-height: 100vh; }
+.sidenav {
+  width: 240px; min-height: 100vh; background: #1a1a2e;
+  display: flex; flex-direction: column; flex-shrink: 0; transition: transform .3s;
+}
+.nav-header { padding: 24px 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.nav-logo   { font-size: 26px; font-weight: 800; color: #4f46e5; margin-bottom: 12px; }
+.nav-nombre { display: block; color: #f1f5f9; font-size: 14px; font-weight: 600; }
+.badge { margin-top: 4px; display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.badge-admin { background: #ede9fe; color: #5b21b6; }
+.badge-user  { background: #d1fae5; color: #065f46; }
+.badge-guest { background: #f3f4f6; color: #374151; }
+.nav-menu { list-style: none; padding: 16px 0; flex: 1; }
+.nav-menu li a {
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 14px;
+  transition: all .2s; border-left: 3px solid transparent;
+}
+.nav-menu li a:hover, .nav-menu li a.active {
+  background: rgba(79,70,229,.15); color: #c7d2fe; border-left-color: #4f46e5;
+}
+.nav-icon { font-size: 18px; width: 24px; text-align: center; }
+.nav-logout {
+  margin: 0 20px 24px; background: rgba(220,38,38,.15); color: #fca5a5;
+  border: 1px solid rgba(220,38,38,.3); border-radius: 8px; padding: 10px;
+  cursor: pointer; font-size: 14px; width: calc(100% - 40px);
+}
+.nav-logout:hover { background: rgba(220,38,38,.3); }
+.main-content  { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.top-bar {
+  background: #fff; padding: 0 24px; height: 60px;
+  display: flex; align-items: center; gap: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06); position: sticky; top: 0; z-index: 10;
+}
+.menu-toggle { display: none; background: none; border: none; font-size: 22px; cursor: pointer; }
+.page-title  { font-size: 18px; font-weight: 700; color: #1a1a2e; }
+.content-body { padding: 24px; flex: 1; overflow-y: auto; }
+.overlay { display: none; }
+@media (max-width: 768px) {
+  .sidenav { position: fixed; top: 0; left: 0; height: 100vh; transform: translateX(-100%); z-index: 100; }
+  .sidenav.open { transform: translateX(0); }
+  .menu-toggle { display: block; }
+  .overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 99; }
+}
