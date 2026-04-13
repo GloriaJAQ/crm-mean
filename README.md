@@ -1,8 +1,8 @@
 # Sistema CRM Web Seguro — MEAN Stack
 
 ## URL del sistema
-- Frontend: https://crm-frontend-sigma-five.vercel.app/
-- Backend API: https://crm-backend-9vuwbo5dt-gloriajaqs-projects.vercel.app/
+- Frontend: https://crm-mean-frontend.vercel.app/api 
+- Backend API: https://crm-backend-sigma-five.vercel.app/api 
 
 ## Credenciales de prueba
 | Rol   | Email           | Password  |
